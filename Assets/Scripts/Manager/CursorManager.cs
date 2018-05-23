@@ -20,10 +20,12 @@ public class CursorManager : MonoBehaviour
         {
             cursor.SetActive(true);
             cursor.transform.position = GazeManager.Instance.GetHitInfo().point;
+            Debug.Log("GAZEHIT CURSOR");
         }
         else
         {
             cursor.SetActive(false);
+            Debug.Log("NOHIT CURSOR");
         }
 	}
 }

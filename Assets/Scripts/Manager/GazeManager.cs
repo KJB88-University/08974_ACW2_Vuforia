@@ -24,6 +24,8 @@ public class GazeManager : Singleton<GazeManager>
         // Update objects for this frame
         oldFocusedObject = focusedObject;
 
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.black);
+
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, maxDistance, Physics.DefaultRaycastLayers))
         {
             // If we hit a game object
@@ -38,20 +40,20 @@ public class GazeManager : Singleton<GazeManager>
                 Debug.Log("Object hit: " + hitInfo.collider.gameObject.name);
 
             }
-            // If our gaze is not on an object
-            else
+        }
+        // If our gaze is not on an object
+        else
+        {
+            // Set our bool to false
+            objectHit = false;
+
+            // Revert our focusedObject to null
+            if (focusedObject != null)
             {
-                // Set our bool to false
-                objectHit = false;
-
-                // Revert our focusedObject to null
-                if (focusedObject != null)
-                {
-                    focusedObject = null;
-                }
-
-                Debug.Log("Object lost: " + hitInfo.collider.gameObject.name);
+                focusedObject = null;
             }
+
+            Debug.Log("Object lost");
         }
 
         // If this is a different object,
