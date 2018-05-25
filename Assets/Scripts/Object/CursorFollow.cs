@@ -19,9 +19,5 @@ public class CursorFollow : MonoBehaviour
         {
             transform.position = GazeManager.Instance.GetHitInfo().point;
         }
-        else
-        {
-            transform.position = (Camera.main.transform.position + Camera.main.transform.forward) * GazeManager.Instance.maxDistance;
-        }
 	}
 }
