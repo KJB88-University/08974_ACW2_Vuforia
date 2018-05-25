@@ -12,7 +12,7 @@ public enum OBJECTTYPE
 public class TeaObjectAttributes : MonoBehaviour
 {
     // Name to be displayed
-    public string Name;
+    public string objName;
 
     // How does this object interact with the world?
     public OBJECTTYPE objectType;
@@ -28,4 +28,9 @@ public class TeaObjectAttributes : MonoBehaviour
     {
 		
 	}
+
+    public string GetName()
+    {
+        return objName;
+    }
 }

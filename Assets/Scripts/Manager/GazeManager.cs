@@ -7,7 +7,11 @@ public class GazeManager : Singleton<GazeManager>
     bool objectHit = false;
     RaycastHit hitInfo;
 
+    public float maxDistance;
+
     GameObject focusedObject;
+    GameObject oldFocusedObject;
+
     // Use this for initialization
     void Start()
     {
@@ -17,51 +21,85 @@ public class GazeManager : Singleton<GazeManager>
     // Update is called once per frame
     void Update()
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, 20.0f, Physics.DefaultRaycastLayers))
+        // Update objects for this frame
+        oldFocusedObject = focusedObject;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, maxDistance, Physics.DefaultRaycastLayers))
         {
             // If we hit a game object
             if (hitInfo.collider != null)
             {
-                NoGazeHit();
+                // Set our bool to true
+                objectHit = true;
+
+                // Update focusedObject with the hit object
+                focusedObject = hitInfo.collider.gameObject;
+
             }
             // If our gaze is not on an object
             else
             {
-                GazeHit();
+                // Set our bool to false
+                objectHit = false;
+                // Revert our focusedObject to null
+                if (focusedObject != null)
+                {
+                    focusedObject = null;
+                }
+            }
+        }
+
+        // If this is a different object,
+        if (focusedObject != oldFocusedObject)
+        {
+            // Send message to old object that we're not looking at it
+            ResetOldFocus();
+
+            // If the new object is not null,
+            if (focusedObject != null)
+            {
+                // And it has the correct component,
+                if (focusedObject.GetComponent<ObjectAction>() != null)
+                {
+                    // Send message to object that we're looking at it
+                    focusedObject.SendMessage("OnGazeEnter");
+                }
             }
         }
     }
 
-    void NoGazeHit()
+    void ResetOldFocus()
     {
-        // Set our bool to false
-        objectHit = false;
-        // Revert our focusedObject to null
-        if (focusedObject != null)
+        if (oldFocusedObject != null)
         {
-            focusedObject = null;
+            if (oldFocusedObject.GetComponent<ObjectAction>() != null)
+            {
+                oldFocusedObject.SendMessage("OnGazeExit");
+            }
         }
     }
-
-    void GazeHit()
-    {
-        // Set our bool to true
-        objectHit = true;
-
-        // Update focusedObject with the hit object
-        focusedObject = hitInfo.collider.gameObject;
-    }
-
+    /// <summary>
+    /// Check if gaze is currently hitting
+    /// </summary>
+    /// <returns>Boolean representing hit state</returns>
     public bool DidGazeHit()
     {
         return objectHit;
     }
 
+    /// <summary>
+    /// Return HitInfo
+    /// </summary>
+    /// <returns>HitInfo</returns>
     public RaycastHit GetHitInfo()
     {
         return hitInfo;
     }
 
+    /// <summary>
+    /// Return the hit object
+    /// </summary>
+    /// <returns>Hit object</returns>
     public GameObject GetHitObject()
     {
         if (objectHit)
