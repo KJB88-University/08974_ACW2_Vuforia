@@ -63,6 +63,8 @@ public class ObjectAction : MonoBehaviour
     public void GestureAction()
     {
         transform.position = new Vector3(objectToMoveTo.transform.position.x, yOffset, objectToMoveTo.transform.position.z);
+        PlayAnimation();
+        PlaySound();
     }
 
     public void ResetAction()

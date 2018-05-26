@@ -1,16 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StepManager : MonoBehaviour
 {
-    /*
-    [SerializeField]
-    GameObject[] firstObjects;
+    [Serializable]
+    public struct InteractionObjects
+    {
+        public GameObject first;
+        public GameObject second;
+    }
 
     [SerializeField]
-    GameObject[] secondObjects;
-    */
+    InteractionObjects[] steps;
 
     int currentStep = 0;
 
@@ -28,7 +31,11 @@ public class StepManager : MonoBehaviour
 
     void NextStep()
     {
-        currentStep++;
+        if (currentStep < steps.Length)
+        {
+            currentStep++;
+        }
+
     }
 
     void ResetSteps()

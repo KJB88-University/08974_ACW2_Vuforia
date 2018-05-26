@@ -37,8 +37,6 @@ public class GazeManager : Singleton<GazeManager>
                 // Update focusedObject with the hit object
                 focusedObject = hitInfo.collider.gameObject;
 
-                Debug.Log("Object hit: " + hitInfo.collider.gameObject.name);
-
             }
         }
         // If our gaze is not on an object
@@ -52,8 +50,6 @@ public class GazeManager : Singleton<GazeManager>
             {
                 focusedObject = null;
             }
-
-            Debug.Log("Object lost");
         }
 
         // If this is a different object,
@@ -69,9 +65,7 @@ public class GazeManager : Singleton<GazeManager>
                 if (focusedObject.GetComponent<ObjectAction>() != null)
                 {
                     // Send message to object that we're looking at it
-                    focusedObject.SendMessage("OnGazeEnter");
-
-                    Debug.Log("OnGazeEnter: " + focusedObject.name);
+                    focusedObject.SendMessage("OnGazeEnter", null, SendMessageOptions.DontRequireReceiver);
                 }
             }
         }
@@ -83,9 +77,7 @@ public class GazeManager : Singleton<GazeManager>
         {
             if (oldFocusedObject.GetComponent<ObjectAction>() != null)
             {
-                oldFocusedObject.SendMessage("OnGazeExit");
-
-                Debug.Log("OnGazeExit: " + oldFocusedObject.name);
+                oldFocusedObject.SendMessage("OnGazeExit", null, SendMessageOptions.DontRequireReceiver);
             }
         }
     }

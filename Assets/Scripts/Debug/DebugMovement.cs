@@ -41,9 +41,10 @@ public class DebugMovement : MonoBehaviour
         rotY += mouseY * mouseSens * Time.deltaTime;
 
         velocity = new Vector3(xHorz, yHorz, zHorz);
+        transform.Translate(velocity * Time.deltaTime, Space.Self);
+       // transform.position += velocity * Time.deltaTime;
 
-        transform.position += velocity * Time.deltaTime;
         Quaternion localRot = Quaternion.Euler(-rotY, rotX, 0.0f);
-        transform.rotation = localRot;
+        transform.rotation =  localRot;
     }
 }

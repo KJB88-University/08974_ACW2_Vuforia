@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeaObjectAttributes : MonoBehaviour
+public class FaceCamera : MonoBehaviour
 {
-    // Name to be displayed
-    public string objName;
 
 	// Use this for initialization
 	void Start ()
@@ -16,11 +14,6 @@ public class TeaObjectAttributes : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
 	}
-
-    public string GetName()
-    {
-        return objName;
-    }
 }
