@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeacupAction : VCustomAction
+public class SpoonAction : VCustomAction
 {
     public override void CustomAction()
     {
