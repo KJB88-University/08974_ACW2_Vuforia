@@ -29,54 +29,56 @@ public class VoiceManager : MonoBehaviour
 
         switch(args.text)
         {
-            case "Reset World":
-                WorldManager.Instance.ResetWorld();
-                break;
-
             case "Select Object":
-                // TODO - General step forward
+                if (GazeManager.Instance.DidGazeHit())
+                {
+                    GazeManager.Instance.GetHitObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
+                }
                 break;
 
-            case "Add Water":
-                // TODO - Add Water to Kettle only
+            case "Add Water Bottle":
+                // Add Water to Kettle only
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
-            case "Boil Kettle":
-                // TODO - Boil the kettle only
+            case "Switch On Kettle":
+                // Boil the kettle only
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
             case "Add Tea Bag":
-                // TODO - Add a tea bag to the cup only
+                // Add a tea bag to the cup only
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
             case "Add Sugar":
-                // TODO - Add sugar to the cup only
+                // Add sugar to the cup only
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
             case "Add Milk":
-                // TODO - Add milk to the cup only
+                // Add milk to the cup only
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
             case "Add Hot Water":
-                // TODO - Add hot water to the cup only
+                // Add hot water to the cup only
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
             case "Remove Tea Bag":
-                // TODO - Remove the tea bag from the cup
+                // Remove the tea bag from the cup
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
             case "Mix Tea":
-                // TODO - Stir the tea with the spoon
+                // Stir the tea with the spoon
+                StepManager.Instance.GetFirstObject().SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 break;
 
             default:
                 // N/A
                 break;
         }
-    }
-
-    void CheckObjectNull()
-    {
-
     }
 }

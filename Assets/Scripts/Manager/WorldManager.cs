@@ -9,4 +9,12 @@ public class WorldManager : Singleton<WorldManager>
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            ResetWorld();
+        }
+    }
 }

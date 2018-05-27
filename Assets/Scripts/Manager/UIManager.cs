@@ -29,10 +29,16 @@ public class UIManager : Singleton<UIManager>
     {
         if (nameTagTextMesh.gameObject.activeSelf)
         {
-            nameTagTextMesh.gameObject.transform.position = GazeManager.Instance.GetHitInfo().point;
+            if (GazeManager.Instance != null)
+            {
+                nameTagTextMesh.gameObject.transform.position = GazeManager.Instance.GetHitInfo().point;
+            }
         }
 
-        objectiveTextMesh.text = objectives[StepManager.Instance.GetStep()];
+        if (StepManager.Instance != null)
+        {
+            objectiveTextMesh.text = objectives[StepManager.Instance.GetStep()];
+        }
 	}
 
     // Update nametag and toggle it on

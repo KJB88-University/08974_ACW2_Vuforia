@@ -15,9 +15,12 @@ public class CursorFollow : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if (GazeManager.Instance.DidGazeHit())
+        if (GazeManager.Instance != null)
         {
-            transform.position = GazeManager.Instance.GetHitInfo().point;
+            if (GazeManager.Instance.DidGazeHit())
+            {
+                transform.position = GazeManager.Instance.GetHitInfo().point;
+            }
         }
 	}
 }

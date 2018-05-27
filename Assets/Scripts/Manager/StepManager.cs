@@ -34,6 +34,11 @@ public class StepManager : Singleton<StepManager>
         return currentStep;
     }
 
+    public GameObject GetFirstObject()
+    {
+        return steps[currentStep].first;
+    }
+
     public bool CheckStep(GameObject first, GameObject second)
     {
         if (steps[currentStep].first == first && steps[currentStep].second == second)
