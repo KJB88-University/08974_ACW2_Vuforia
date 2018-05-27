@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StepManager : MonoBehaviour
+public class StepManager : Singleton<StepManager>
 {
     [Serializable]
-    public struct InteractionObjects
+    struct InteractionObjects
     {
         public GameObject first;
         public GameObject second;
@@ -29,17 +29,33 @@ public class StepManager : MonoBehaviour
 		
 	}
 
-    void NextStep()
+    public int GetStep()
+    {
+        return currentStep;
+    }
+
+    public bool CheckStep(GameObject first, GameObject second)
+    {
+        if (steps[currentStep].first == first && steps[currentStep].second == second)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void NextStep()
     {
         if (currentStep < steps.Length)
         {
             currentStep++;
         }
-
     }
 
-    void ResetSteps()
+    public void ResetSteps()
     {
-        currentStep = 0;
+        WorldManager.Instance.ResetWorld();
     }
 }

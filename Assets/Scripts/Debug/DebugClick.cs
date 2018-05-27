@@ -22,15 +22,12 @@ public class DebugClick : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("LMB pressed");
-
-            // TODO - Object functionality if tapped
             if (GazeManager.Instance.DidGazeHit())
             {
                 if (GazeManager.Instance.GetHitObject() != null)
                 {
                     GameObject focusedObject = GazeManager.Instance.GetHitObject();
-                    focusedObject.SendMessage("GestureAction");
+                    focusedObject.SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
                 }
             }
         }

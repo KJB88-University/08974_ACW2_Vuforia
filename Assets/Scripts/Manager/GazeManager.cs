@@ -62,7 +62,7 @@ public class GazeManager : Singleton<GazeManager>
             if (focusedObject != null)
             {
                 // And it has the correct component,
-                if (focusedObject.GetComponent<ObjectAction>() != null)
+                if (focusedObject.GetComponent<VCustomAction>() != null)
                 {
                     // Send message to object that we're looking at it
                     focusedObject.SendMessage("OnGazeEnter", null, SendMessageOptions.DontRequireReceiver);
@@ -75,7 +75,7 @@ public class GazeManager : Singleton<GazeManager>
     {
         if (oldFocusedObject != null)
         {
-            if (oldFocusedObject.GetComponent<ObjectAction>() != null)
+            if (oldFocusedObject.GetComponent<VCustomAction>() != null)
             {
                 oldFocusedObject.SendMessage("OnGazeExit", null, SendMessageOptions.DontRequireReceiver);
             }

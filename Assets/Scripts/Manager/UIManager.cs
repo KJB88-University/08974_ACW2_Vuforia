@@ -15,6 +15,9 @@ public class UIManager : Singleton<UIManager>
     TextMesh nameTagTextMesh;
     bool nameTagActive = false;
 
+    [SerializeField]
+    string[] objectives;
+
     // Use this for initialization
     void Start ()
     {
@@ -28,6 +31,8 @@ public class UIManager : Singleton<UIManager>
         {
             nameTagTextMesh.gameObject.transform.position = GazeManager.Instance.GetHitInfo().point;
         }
+
+        objectiveTextMesh.text = objectives[StepManager.Instance.GetStep()];
 	}
 
     // Update nametag and toggle it on

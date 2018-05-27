@@ -30,7 +30,7 @@ public class GestureManager : MonoBehaviour
             if (GazeManager.Instance.GetHitObject() != null)
             {
                 GameObject focusedObject = GazeManager.Instance.GetHitObject();
-                focusedObject.SendMessage("GestureAction", null, SendMessageOptions.DontRequireReceiver);
+                focusedObject.SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
             }
         }
     }
