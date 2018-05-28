@@ -58,9 +58,4 @@ public class StepManager : Singleton<StepManager>
             currentStep++;
         }
     }
-
-    public void ResetSteps()
-    {
-        WorldManager.Instance.ResetWorld();
-    }
 }

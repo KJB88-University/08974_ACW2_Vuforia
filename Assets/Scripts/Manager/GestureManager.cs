@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.WSA.Input;
@@ -7,30 +8,38 @@ public class GestureManager : MonoBehaviour
 {
     GestureRecognizer recognizer;
 
+    Material debug;
+
+    GameObject heldObject;
+
     // Use this for initialization
     void Start()
     {
         recognizer = new GestureRecognizer();
         recognizer.SetRecognizableGestures(GestureSettings.Tap);
+        //recognizer.SetRecognizableGestures(GestureSettings.Hold);
+
         recognizer.Tapped += GestureRecognizer_Tapped;
+
         StartGestures();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void GestureRecognizer_Tapped(TappedEventArgs args)
     {
-        // TODO - Object functionality if tapped
-        if (GazeManager.Instance.DidGazeHit())
+        if (WorldManager.Instance.gameState == GameState.PLACE_TRAY)
         {
-            if (GazeManager.Instance.GetHitObject() != null)
+            WorldManager.Instance.StartGame();
+        }
+        else if (WorldManager.Instance.gameState == GameState.MAKE_TEA)
+        {
+            if (GazeManager.Instance.DidGazeHit())
             {
-                GameObject focusedObject = GazeManager.Instance.GetHitObject();
-                focusedObject.SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
+                if (GazeManager.Instance.GetHitObject() != null)
+                {
+                    GameObject focusedObject = GazeManager.Instance.GetHitObject();
+                    focusedObject.SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
+                    //focusedObject.GetComponent<Renderer>().material = debug;
+                }
             }
         }
     }
@@ -43,10 +52,5 @@ public class GestureManager : MonoBehaviour
     void StartGestures()
     {
         recognizer.StartCapturingGestures();
-    }
-
-    void OnTapped(TappedEventArgs args)
-    {
-
     }
 }

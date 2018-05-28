@@ -36,7 +36,7 @@ public class KettleAction : VCustomAction
 
     void SecondStep()
     {
-        transform.position = new Vector3(objectToMoveTo.transform.position.x, base.yOffset, objectToMoveTo.transform.position.z);
+        transform.position = new Vector3(objectToMoveTo.transform.position.x, objectToMoveTo.transform.position.y + base.yOffset, objectToMoveTo.transform.position.z);
         base.PlayAnimation();
         PlaySecondAudio();
     }

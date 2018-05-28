@@ -16,7 +16,7 @@ public class UIManager : Singleton<UIManager>
     bool nameTagActive = false;
 
     [SerializeField]
-    string[] objectives;
+    public string[] objectives;
 
     // Use this for initialization
     void Start ()

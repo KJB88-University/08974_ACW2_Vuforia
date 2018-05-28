@@ -3,18 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum GameState
+{
+    PLACE_TRAY,
+    MAKE_TEA
+}
+
 public class WorldManager : Singleton<WorldManager>
 {
-    public void ResetWorld()
+    [SerializeField]
+    GameObject tray;
+
+    [SerializeField]
+    GameObject[] objects;
+
+    [SerializeField]
+    TextMesh uiText;
+
+    [SerializeField]
+    TextMesh placeTray;
+
+    public GameState gameState = GameState.PLACE_TRAY;
+
+    public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        for (int i = 0; i < objects.Length; i++)
+        {
+            objects[i].gameObject.SetActive(true);
+        }
+
+        gameState = GameState.MAKE_TEA;
+
+        placeTray.gameObject.SetActive(false);
+        uiText.gameObject.SetActive(true);
     }
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.R))
-        {
-            ResetWorld();
-        }
-    }
+
 }

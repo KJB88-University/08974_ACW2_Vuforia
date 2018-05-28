@@ -27,7 +27,7 @@ public class VCustomAction : MonoBehaviour
     {
         if (StepManager.Instance.CheckStep(this.gameObject, objectToMoveTo))
         {
-            transform.parent.position = new Vector3(objectToMoveTo.transform.position.x, yOffset, objectToMoveTo.transform.position.z);
+            transform.parent.position = new Vector3(objectToMoveTo.transform.position.x, objectToMoveTo.transform.position.y + yOffset, objectToMoveTo.transform.position.z);
             PlayAnimation();
             PlaySound();
 
@@ -40,9 +40,10 @@ public class VCustomAction : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-
+        /*
         defaultPosition = transform.parent.position;
         defaultRotation = transform.rotation;
+        */
     }
 
     /// <summary>

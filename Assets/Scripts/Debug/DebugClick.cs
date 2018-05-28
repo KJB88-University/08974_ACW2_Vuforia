@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class DebugClick : MonoBehaviour
 {
-    GameObject oldFocusedObject;
-    GameObject focusedObject;
-
-    RaycastHit hitInfo;
-    bool objectHit;
-
-    float maxDistance = 20f;
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            if (GazeManager.Instance.DidGazeHit())
+            if (WorldManager.Instance.gameState == GameState.MAKE_TEA)
             {
-                if (GazeManager.Instance.GetHitObject() != null)
+                if (GazeManager.Instance.DidGazeHit())
                 {
-                    GameObject focusedObject = GazeManager.Instance.GetHitObject();
-                    focusedObject.SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
+                    if (GazeManager.Instance.GetHitObject() != null)
+                    {
+                        GameObject focusedObject = GazeManager.Instance.GetHitObject();
+                        focusedObject.SendMessage("CustomAction", null, SendMessageOptions.DontRequireReceiver);
+                    }
                 }
+            }
+            else if (WorldManager.Instance.gameState == GameState.PLACE_TRAY)
+            {
+                WorldManager.Instance.StartGame();
             }
         }
     }

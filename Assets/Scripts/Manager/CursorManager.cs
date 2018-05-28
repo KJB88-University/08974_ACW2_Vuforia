@@ -7,28 +7,41 @@ public class CursorManager : MonoBehaviour
     [SerializeField]
     GameObject cursor;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         if (GazeManager.Instance != null)
         {
-            if (GazeManager.Instance.DidGazeHit())
+            if (WorldManager.Instance.gameState == GameState.MAKE_TEA)
             {
-                cursor.SetActive(true);
-                cursor.transform.position = GazeManager.Instance.GetHitInfo().point;
-                Debug.Log("GAZEHIT CURSOR");
+                if (GazeManager.Instance.DidGazeHit())
+                {
+                    cursor.SetActive(true);
+                    cursor.transform.position = GazeManager.Instance.GetHitInfo().point;
+                }
+                else
+                {
+                    cursor.SetActive(false);
+                }
             }
-            else
+            else if (WorldManager.Instance.gameState == GameState.PLACE_TRAY)
             {
-                cursor.SetActive(false);
-                Debug.Log("NOHIT CURSOR");
+                if (GazeManager.Instance.firstHit.collider != null)
+                {
+                    cursor.SetActive(true);
+                    cursor.transform.position = GazeManager.Instance.firstHit.point;
+                }
+                else
+                {
+                    cursor.SetActive(false);
+                }
             }
         }
-	}
+    }
 }

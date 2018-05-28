@@ -11,63 +11,68 @@ public class GazeManager : Singleton<GazeManager>
 
     GameObject focusedObject;
     GameObject oldFocusedObject;
+    [HideInInspector]
+    public RaycastHit firstHit;
 
-    // Use this for initialization
-    void Start()
-    {
+    [SerializeField]
+    LayerMask objectLayer;
 
-    }
-
+    [SerializeField]
+    LayerMask spatialMappingLayer;
     // Update is called once per frame
     void Update()
     {
         // Update objects for this frame
         oldFocusedObject = focusedObject;
-
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.black);
-
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, maxDistance, Physics.DefaultRaycastLayers))
+        if (WorldManager.Instance.gameState == GameState.MAKE_TEA)
         {
-            // If we hit a game object
-            if (hitInfo.collider != null)
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, maxDistance, objectLayer))
             {
-                // Set our bool to true
-                objectHit = true;
-
-                // Update focusedObject with the hit object
-                focusedObject = hitInfo.collider.gameObject;
-
-            }
-        }
-        // If our gaze is not on an object
-        else
-        {
-            // Set our bool to false
-            objectHit = false;
-
-            // Revert our focusedObject to null
-            if (focusedObject != null)
-            {
-                focusedObject = null;
-            }
-        }
-
-        // If this is a different object,
-        if (focusedObject != oldFocusedObject)
-        {
-            // Send message to old object that we're not looking at it
-            ResetOldFocus();
-
-            // If the new object is not null,
-            if (focusedObject != null)
-            {
-                // And it has the correct component,
-                if (focusedObject.GetComponent<VCustomAction>() != null)
+                // If we hit a game object
+                if (hitInfo.collider != null)
                 {
-                    // Send message to object that we're looking at it
-                    focusedObject.SendMessage("OnGazeEnter", null, SendMessageOptions.DontRequireReceiver);
+                    // Set our bool to true
+                    objectHit = true;
+
+                    // Update focusedObject with the hit object
+                    focusedObject = hitInfo.collider.gameObject;
                 }
             }
+            // If our gaze is not on an object
+            else
+            {
+                // Set our bool to false
+                objectHit = false;
+
+                // Revert our focusedObject to null
+                if (focusedObject != null)
+                {
+                    focusedObject = null;
+                }
+            }
+
+            // If this is a different object,
+            if (focusedObject != oldFocusedObject)
+            {
+                // Send message to old object that we're not looking at it
+                ResetOldFocus();
+
+                // If the new object is not null,
+                if (focusedObject != null)
+                {
+                    // And it has the correct component,
+                    if (focusedObject.GetComponent<VCustomAction>() != null)
+                    {
+                        // Send message to object that we're looking at it
+                        focusedObject.SendMessage("OnGazeEnter", null, SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+            }
+        }
+        else if (WorldManager.Instance.gameState == GameState.PLACE_TRAY)
+        {
+            RaycastHit firstHitInfo;
+            Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out firstHit, 20f, spatialMappingLayer);
         }
     }
 

@@ -23,10 +23,10 @@ GameObject:
   - component: {fileID: 23999381696949058}
   - component: {fileID: 65896773240171624}
   - component: {fileID: 114693958447641134}
-  - component: {fileID: 114241576835513962}
   - component: {fileID: 114288495745717128}
   - component: {fileID: 95568779430275450}
   - component: {fileID: 82632496020638310}
+  - component: {fileID: 114300383863729718}
   m_Layer: 0
   m_Name: Water Bottle
   m_TagString: Untagged
@@ -55,9 +55,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1634694044404988}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.046, y: 1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4821684082812864}
   m_Father: {fileID: 0}
@@ -243,20 +243,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114241576835513962
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1277514752227108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10620d97c3bd8fc4cbc2edf865462e40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToMoveTo: {fileID: 0}
-  yOffset: 1
-  AnimationToPlay: Tip
 --- !u!114 &114288495745717128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,6 +256,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highlightedMat: {fileID: 2100000, guid: 365246e1c5d5ea3419c318cbcb378ccb, type: 2}
   originalMat: {fileID: 2100000, guid: 102ae3d766d34814982d0bbedc1652a5, type: 2}
+--- !u!114 &114300383863729718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1277514752227108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23457a78dba9ebc4aa28e3e2fdd33b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToMoveTo: {fileID: 0}
+  yOffset: 1
+  AnimationToPlay: Tip
 --- !u!114 &114693958447641134
 MonoBehaviour:
   m_ObjectHideFlags: 1
