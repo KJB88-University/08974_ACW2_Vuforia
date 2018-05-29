@@ -4,6 +4,7 @@ Length of Clip: 00:06
 Website of Author:  http://www.eds-ward.de/
 Website Clip: https://freesound.org/people/edsward/sounds/411438/
 Licence: CC0
+Licence Website: https://creativecommons.org/publicdomain/zero/1.0/
 Date Downloaded: 21st May 2018
 Modified by: Kevin Barr
 Modified on: 21st May 2018
@@ -14,6 +15,18 @@ Length of Clip: 00:01
 Website of Author:  N/A
 Website Clip: https://freesound.org/people/danhelbling/sounds/272392/
 Licence: CC0
+Licence Website: https://creativecommons.org/publicdomain/zero/1.0/
+Date Downloaded: 21st May 2018
+Modified by: Kevin Barr
+Modified on: 21st May 2018
+
+Name of Clip: Electric Kettle
+Author of Clip: suzzy457
+Length of Clip: 0:54:024
+Website of Author: N/A
+Website Clip: https://freesound.org/people/suzzy457/sounds/268145/
+Licence: Attribution 3.0 Unported (CC by 3.0)
+Licence Website: https://creativecommons.org/licenses/by/3.0/
 Date Downloaded: 21st May 2018
 Modified by: Kevin Barr
 Modified on: 21st May 2018

@@ -7,7 +7,14 @@ public class TrayAction : VCustomAction
     [SerializeField]
     Transform cursorTransf;
 
-      void Update()
+    Vector3 newdefaultPosition;
+
+    private void Start()
+    {
+        newdefaultPosition = transform.position;
+    }
+
+    void Update()
     {
         if (WorldManager.Instance.gameState == GameState.PLACE_TRAY)
         {
@@ -17,7 +24,7 @@ public class TrayAction : VCustomAction
             }
             else
             {
-                transform.position = cursorTransf.position;
+                transform.position = newdefaultPosition;
             }
         }
     }
